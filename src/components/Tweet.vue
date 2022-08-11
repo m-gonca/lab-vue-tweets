@@ -1,38 +1,67 @@
 <template>
   <div className="tweet">
-    <img
-      src="https://i.imgur.com/9yw1Fyw.jpg"
+    <!-- <img
+      :src="url"
       className="profile"
       alt="profile"
-    />
-
-    <div className="body">
+    /> -->
+    <!-- <div className="body">
       <div className="top">
         <span className="user">
-          <span className="name">Ironhack</span>
-          <span className="handle">@ironhack</span>
+          <span className="name">{{name}}</span>
+          <span className="handle">@{{user}}</span>
         </span>
-
-        <span className="timestamp">Nov 30, 2020</span>
-      </div>
-
-      <p className="message">
-        On December 7th, we will be hosting a #webinar that will introduce you
-        to #SQL! Are you ready? 🚀
-      </p>
-
-      <div className="actions">
-        <!-- Font Awesome icons -->
+        <span className="timestamp">{{date}}</span>
+      </div> -->
+      <!-- <p className="message">
+        {{message}}
+      </p>           -->
+      <!-- <div className="actions">
         <i class="far fa-comment"></i>
         <i class="fas fa-retweet"></i>
         <i class="far fa-heart"></i>
         <i class="fas fa-share"></i>
-      </div>
-    </div>
+      </div> -->
 
+    <ProfileImage :image="user.image" />
+    <div className="body">
+      <div className="top">
+        <User :userData="user" />
+        <Timestamp :time="timestamp" />
+    </div>
+    <Message :message="message"/>
+    <Actions/>
     <i class="fas fa-ellipsis-h"></i>
+    </div>
   </div>
 </template>
+
+<script>
+import ProfileImage from './ProfileImage.vue';
+import User from './User.vue';
+import Timestamp from './Timestamp.vue';
+import Message from './Message.vue';
+import Actions from './Actions.vue';
+
+
+export default {
+	name: "Tweet",
+	// props: ["name", "user", "date", "message", "url"],
+  components: { 
+    ProfileImage,
+    User,
+    Timestamp,
+    Message,
+    Actions,
+   },
+  props: {
+    user: Object,
+    timestamp: String,
+    message: String
+  },
+
+}
+</script>
 
 <style scoped>
 a {
